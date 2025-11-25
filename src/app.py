@@ -1,6 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 import time
 from .modules.videos import router as videos_app
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 
 start_time = time.time()
 
@@ -20,3 +22,26 @@ async def health():
 
 
 app.include_router(videos_app)
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    details = exc.errors()
+
+    first_error = details[0]
+    msg = first_error.get("msg", "Invalid value!")
+    
+    path_parts = first_error.get("loc", [])
+
+    path = ".".join(str(p) for p in path_parts)
+    if path:
+        msg += f" ({path})"
+
+    return JSONResponse(
+        status_code=400,
+        content={
+            "status": "Bad Request",
+            "message": ["Invalid payload!", msg], 
+        }
+    )
+    
