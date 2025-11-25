@@ -1,3 +1,4 @@
+import { headers } from 'next/headers'
 import Header from '@/components/header'
 import VideoGrid from '@/components/video-grid'
 
@@ -8,18 +9,16 @@ export interface Video {
   tags: string[]
 }
 
-const dummyVideo: Video = {
-  id: 1,
-  title: 'Amazing Sunset Timelapse',
-  videoUrl: '/sunset-timelapse.png',
-  tags: ['nature', 'travel', 'beautiful'],
-}
+export default async function Home() {
+  const h = await headers()
+  const host = h.get('host')
+  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https'
+  const baseUrl = `${protocol}://${host}`
 
-export default function Home() {
-  const videos: Video[] = Array.from({ length: 8 }, (_, i) => ({
-    ...dummyVideo,
-    id: i + 1,
-  }))
+  const res = await fetch(`${baseUrl}/api/shorts`, {
+    cache: 'no-store',
+  })
+  const { videos }: { videos: Video[] } = await res.json()
 
   return (
     <main className='min-h-screen bg-background'>

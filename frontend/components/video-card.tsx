@@ -1,5 +1,4 @@
 import { Video } from '@/app/page'
-import Image from 'next/image'
 
 interface VideoCardProps {
   video: Video
@@ -10,13 +9,11 @@ export default function VideoCard({ video }: VideoCardProps) {
     <div className='group cursor-pointer rounded-lg overflow-hidden bg-secondary border border-border transition-all duration-300 hover:shadow-lg hover:shadow-accent/20'>
       {/* Video Thumbnail */}
       <div className='relative aspect-video bg-muted overflow-hidden'>
-        <Image
-          src='/placeholder.svg'
-          alt={video.title}
-          fill
+        <video
+          src='https://cdn.pixabay.com/video/2025/10/31/313145_large.mp4'
+          controls
           className='w-full h-full object-cover'
-        />
-        <div className='absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-300' />
+        ></video>
       </div>
 
       {/* Card Content */}
