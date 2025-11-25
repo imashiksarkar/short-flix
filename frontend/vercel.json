@@ -5,6 +5,10 @@
       "source": "/api/(.*)",
       "destination": "https://shortflixbackend.vercel.app/$1"
     },
-    { "source": "/api", "destination": "https://shortflixbackend.vercel.app/" }
+    { "source": "/api", "destination": "https://shortflixbackend.vercel.app/" },
+    {
+      "source": "/openapi.json",
+      "destination": "https://shortflixbackend.vercel.app/openapi.json"
+    }
   ]
 }
