@@ -1,0 +1,10 @@
+{
+  "builds": [{ "src": "package.json", "use": "@vercel/next" }],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://shortflixbackend.vercel.app/$1"
+    },
+    { "source": "/api", "destination": "https://shortflixbackend.vercel.app/" }
+  ]
+}
