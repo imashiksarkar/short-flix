@@ -10,7 +10,7 @@ export default function VideoCard({ video }: VideoCardProps) {
       {/* Video Thumbnail */}
       <div className='relative aspect-video bg-muted overflow-hidden'>
         <video
-          src='https://cdn.pixabay.com/video/2025/10/31/313145_large.mp4'
+          src={video.videoUrl}
           controls
           className='w-full h-full object-cover'
         ></video>
