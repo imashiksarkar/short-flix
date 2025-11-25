@@ -3,9 +3,9 @@ POST http://localhost:5000/api/shorts
 Content-Type: application/json
 
 {
-  "videoUrl": "https://example.com/video.mp4",
-  "title": "Sample Title",
-  "tags": ["tag1", "tag2"]
+  "title": "Heaven Nature",
+  "videoUrl": "https://cdn.pixabay.com/video/2025/10/31/313145_large.mp4",
+  "tags": ["nature", "outdoor", "heaven"]
 }
 
 
